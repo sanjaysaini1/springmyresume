@@ -202,9 +202,9 @@ public class SimpleSiteBuilder implements SiteBuilder {
 		System.out.println("RESOURCE"+resource.getURL().toString());
 		File cssSrcDir = resource.getFile();
 		File cssDstDir = new File(location + "/" + "css");
-		FileUtils fileutil = new FileUtils();
+		//FileUtils fileutil = new FileUtils();
 		
-			fileutil.copyDirectory(cssSrcDir, cssDstDir);
+		FileUtils.copyDirectory(cssSrcDir, cssDstDir);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
