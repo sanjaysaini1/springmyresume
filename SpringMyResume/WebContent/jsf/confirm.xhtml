@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:tab id="confirm" title="Confirm">
+		<p:panel id="panel_confirm" header="Confirm">
+
+			<p:accordionPanel>  
+				<ui:insert name="display-personaldetails">
+					<ui:include src="display-personaldetails.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="display-skills">
+					<ui:include src="display-skills.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="display-experience">
+					<ui:include src="display-experience.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="display-education">
+					<ui:include src="display-education.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="display-publication">
+					<ui:include src="display-publication.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="display-references">
+					<ui:include src="display-references.xhtml" />
+				</ui:insert>
+			   
+			</p:accordionPanel>
+			
+			<p:commandButton id="btn_save" value="Save" 
+			immediate="true" action="#{resumeBuilder.putResumeToDB()}">
+		</p:commandButton>
+		</p:panel>
+				
+	</p:tab>
+
+
+</ui:composition>

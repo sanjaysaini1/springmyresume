@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<p:tab id="display-edu" title="Education">
+					
+			<p:dataTable id="display-edutable" var="edu"
+				value="#{resumeBuilder.educationList}">
+				<p:column headerText="Qualification">
+					<h:outputText value="#{edu.degree}" />
+				</p:column>
+
+				<p:column headerText="Institution">
+					<h:outputText value="#{edu.institution}" />
+				</p:column>
+
+				<p:column headerText="Location">
+					<h:outputText value="#{edu.location}" />
+				</p:column>
+
+				<p:column headerText="Marks Obtained">
+					<h:outputText value="#{edu.marksObtained}" />
+				</p:column>
+
+				<p:column headerText="Max Marks">
+					<h:outputText value="#{edu.maximumMarks}" />
+				</p:column>
+
+				<p:column headerText="Date of Joining">
+					<h:outputText value="#{edu.yearofJoining}" />
+				</p:column>
+
+				<p:column headerText="Date of Passing">
+					<h:outputText value="#{edu.yearofPassing}" />
+				</p:column>
+
+			</p:dataTable>
+
+	</p:tab>
+
+</ui:composition>

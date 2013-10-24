@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:tab id="pub" title="Publications">
+		<p:panel id="panel_pub" header="Publications">
+
+			<h:messages errorClass="error" />
+
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="paperName" value="Paper Name: " />
+				<p:inputText id="paperName"
+					value="#{resumeBuilder.publications.paperName}">
+
+				</p:inputText>
+
+				<p:message for="paperName" display="icon" />
+
+
+				<h:outputLabel for="conference" value="Conference: " />
+				<p:inputText id="conference"
+					value="#{resumeBuilder.publications.conference}" required="false">
+				</p:inputText>
+				<p:message for="conference" display="icon" />
+
+				<h:outputLabel for="journal" value="Journal: " />
+				<p:inputText id="journal"
+					value="#{resumeBuilder.publications.journal}" required="false">
+				</p:inputText>
+
+				<p:message for="journal" display="icon" />
+
+				<h:outputLabel for="year" value="Publication Year: " />
+				<p:inputText id="year" value="#{resumeBuilder.publications.year}"
+					required="false">
+				</p:inputText>
+				<p:message for="year" display="icon" />
+
+				<h:outputLabel for="paperDetails" value="Details: " />
+				<p:inputTextarea id="paperDetails" rows="2" cols="80"
+					counter="counter5" maxlength="200"
+					value="#{resumeBuilder.publications.paperDetails}"
+					counterTemplate="{0} characters remaining." autoResize="false">
+
+				</p:inputTextarea>
+
+
+				<h:outputText id="counter5" />
+
+			</h:panelGrid>
+			<p:commandButton id="btn_addpub" value="Add" update="panel_pub"
+				action="#{resumeBuilder.addpub()}">
+			</p:commandButton>
+
+			<p:dataTable id="pubtable" var="pub"
+				value="#{resumeBuilder.publicationsList}">
+				<p:column headerText="Paper Title">
+					<h:outputText value="#{pub.paperName}" />
+				</p:column>
+
+				<p:column headerText="Conference">
+					<h:outputText value="#{pub.conference}" />
+				</p:column>
+
+				<p:column headerText="Journal">
+					<h:outputText value="#{pub.journal}" />
+				</p:column>
+
+				<p:column headerText="Year">
+					<h:outputText value="#{pub.year}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+
+		<p:commandButton id="btn_clear5" value="Clear" update="panel_pub"
+			immediate="true" action="#{resumeBuilder.resetpub()}">
+		</p:commandButton>
+	</p:tab>
+
+
+</ui:composition>

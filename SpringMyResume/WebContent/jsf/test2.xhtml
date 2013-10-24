@@ -1,0 +1,28 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="newtemplate.xhtml">
+
+	<ui:define name="content">
+
+		<h:form>
+
+			<p:growl id="growl" showDetail="true" />
+			<p:pieChart id="pieChart" value="#{chartBean.pieModel}"
+				legendPosition="w" title="Interactive Pie Chart"
+				style="width:400px;height:300px">
+				<p:ajax event="itemSelect" listener="#{chartBean.itemSelect}"
+					update="growl" />
+			</p:pieChart>
+
+			<p:barChart id="barChart" value="#{chartBean.categoryModel}"
+				legendPosition="ne" title="Interactive Bar Chart"
+				style="height:300px">
+				<p:ajax event="itemSelect" listener="#{chartBean.itemSelect}"
+					update="growl" />
+			</p:barChart>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

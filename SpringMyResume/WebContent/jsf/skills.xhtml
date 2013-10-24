@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<p:tab id="skill" title="Skills">
+		<p:panel id="panel_skills" header="Skills">
+
+			<h:messages errorClass="error" />
+
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="skilltype" value="Skill Type: " />
+				<p:inputText id="skilltype"
+					value="#{resumeBuilder.skills.skilltype}">
+
+				</p:inputText>
+
+				<p:message for="skilltype" display="icon" />
+
+
+				<h:outputLabel for="skillname" value="Skill: " />
+				<p:inputText id="skillname"
+					value="#{resumeBuilder.skills.skillname}" required="false">
+				</p:inputText>
+				<p:message for="skillname" display="icon" />
+
+				<h:outputLabel for="usedSince" value="Used Since: " />
+				<p:calendar id="usedSince" pattern="dd/MM/yyyy"
+					showButtonPanel="true" navigator="true"
+					value="#{resumeBuilder.skills.usedSince}" required="false"
+					mindate="1/1/40">
+				</p:calendar>
+
+				<p:message for="usedSince" display="icon" />
+
+				<h:outputLabel for="lastUsed" value="Last Used: " />
+				<p:calendar id="lastUsed" pattern="dd/MM/yyyy"
+					showButtonPanel="true" navigator="true"
+					value="#{resumeBuilder.skills.lastUsed}" required="false"
+					mindate="1/1/40">
+				</p:calendar>
+
+				<p:message for="lastUsed" display="icon" />
+
+				<h:outputText for="rank" value="Rating:" />
+				<p:rating id="rank" value="#{resumeBuilder.skills.rank}"
+					required="true" stars="10" />
+				<p:message for="rank" display="icon" />
+
+
+			</h:panelGrid>
+			<p:commandButton id="btn_addskill" value="Add" update="panel_skills"
+				action="#{resumeBuilder.addskills()}">
+			</p:commandButton>
+
+			<p:dataTable id="skillstable" var="skill"
+				value="#{resumeBuilder.skillsList}">
+				<p:column headerText="Skill Type">
+					<h:outputText value="#{skill.skilltype}" />
+				</p:column>
+
+				<p:column headerText="Skill">
+					<h:outputText value="#{skill.skillname}" />
+				</p:column>
+
+				<p:column headerText="Used Since">
+					<h:outputText value="#{skill.usedSince}" />
+				</p:column>
+
+				<p:column headerText="Last Used">
+					<h:outputText value="#{skill.lastUsed}" />
+				</p:column>
+
+
+				<p:column headerText="Rating">
+					<h:outputText value="#{skill.rank}" />
+				</p:column>
+			</p:dataTable>
+
+		</p:panel>
+
+		<p:commandButton id="btn_clear2" value="Clear" update="panel_skills"
+			immediate="true" action="#{resumeBuilder.resetskills()}">
+		</p:commandButton>
+	</p:tab>
+
+
+</ui:composition>

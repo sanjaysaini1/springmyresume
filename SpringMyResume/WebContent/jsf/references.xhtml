@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:tab id="ref" title="References">
+		<p:panel id="panel_ref" header="References">
+
+			<h:messages errorClass="error" />
+
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="referenceName" value="Name: " />
+				<p:inputText id="referenceName"
+					value="#{resumeBuilder.references.referenceName}">
+
+				</p:inputText>
+
+				<p:message for="referenceName" display="icon" />
+
+
+				<h:outputLabel for="referenceAddress" value="Address: " />
+				<p:inputTextarea id="referenceAddress" rows="5" cols="40"
+					counter="counter6" maxlength="100" required="false"
+					value="#{resumeBuilder.references.referenceAddress}"
+					counterTemplate="{0} characters remaining." autoResize="false">
+					<f:validateLength minimum="2" />
+				</p:inputTextarea>
+
+				<h:outputText id="counter6" />
+
+
+				<h:outputLabel for="referenceContactNumber" value="Contact Number: " />
+				<p:inputMask id="referenceContactNumber"
+					value="#{resumeBuilder.references.referenceContactNumber}"
+					required="false" mask="9999999999">
+					<f:validateLength maximum="13" minimum="10" />
+				</p:inputMask>
+				<p:message for="referenceContactNumber" display="icon" />
+
+			</h:panelGrid>
+			<p:commandButton id="btn_addref" value="Add" update="panel_ref"
+				action="#{resumeBuilder.addref()}">
+			</p:commandButton>
+
+			<p:dataTable id="reftable" var="ref"
+				value="#{resumeBuilder.referencesList}">
+				<p:column headerText="Name">
+					<h:outputText value="#{ref.referenceName}" />
+				</p:column>
+
+				<p:column headerText="Address">
+					<h:outputText value="#{ref.referenceAddress}" />
+				</p:column>
+
+				<p:column headerText="Phone Number">
+					<h:outputText value="#{ref.referenceContactNumber}" />
+				</p:column>
+
+
+
+			</p:dataTable>
+
+		</p:panel>
+
+		<p:commandButton id="btn_clear6" value="Clear" update="panel_ref"
+			immediate="true" action="#{resumeBuilder.resetref()}">
+		</p:commandButton>
+	</p:tab>
+
+
+</ui:composition>

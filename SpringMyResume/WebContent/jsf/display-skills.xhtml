@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<p:tab id="display-skill" title="Skills">
+				
+		
+
+			<p:dataTable id="display-skillstable" var="skill"
+				value="#{resumeBuilder.skillsList}">
+				<p:column headerText="Skill Type">
+					<h:outputText value="#{skill.skilltype}" />
+				</p:column>
+
+				<p:column headerText="Skill">
+					<h:outputText value="#{skill.skillname}" />
+				</p:column>
+
+				<p:column headerText="Used Since">
+					<h:outputText value="#{skill.usedSince}" />
+				</p:column>
+
+				<p:column headerText="Last Used">
+					<h:outputText value="#{skill.lastUsed}" />
+				</p:column>
+
+
+				<p:column headerText="Rating">
+					<h:outputText value="#{skill.rank}" />
+				</p:column>
+			</p:dataTable>
+
+
+
+	</p:tab>
+
+
+</ui:composition>

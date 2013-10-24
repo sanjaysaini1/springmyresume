@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- defining date property editor -->
+	<!-- annotation config -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.springmyresume" />
+
+
+
+
+
+
+	<bean name="personalDetails"
+		class="com.springmyresume.resume.personeldetails.PersonalDetailsImpl">
+		<property name="name" value="Sanjay Saini"></property>
+		<property name="dateOfBirth" value="22/08/1985"></property>
+		<property name="address" value="D16, SF, Uppal South End, Sec 49, Gurgaon"></property>
+		<property name="emailId" value="sanjaysaini1@gmail.com"></property>
+		<property name="contactNumber" value="+918287390842"></property>
+		<property name="languagesKnown" value="English,Hindi"></property>
+		<property name="interests" value="Foreign Policy,Philosophy"></property>
+
+	</bean>
+
+	<bean name="educationCollege" class="com.springmyresume.resume.education.EducationImpl">
+		<property name="degree" value="Masters and Bachelors in IT"></property>
+		<property name="institution" value="IIIT Gwalior"></property>
+		<property name="location" value="Gwalior"></property>
+		<property name="marksObtained" value="7.17"></property>
+		<property name="maximumMarks" value="10"></property>
+		<property name="remarks" value="Integrated Post Graduation"></property>
+
+	</bean>
+	
+	<bean name="educationTenth" class="com.springmyresume.resume.education.EducationImpl">
+		<property name="degree" value="10th Class"></property>
+		<property name="institution" value="CBSE"></property>
+		<property name="location" value="Assam"></property>
+		<property name="marksObtained" value="87.4"></property>
+		<property name="maximumMarks" value="100"></property>
+		<property name="remarks" value="Secondary School"></property>
+
+	</bean>
+	
+	<bean name="educationSchool" class="com.springmyresume.resume.education.EducationImpl">
+		<property name="degree" value="12th"></property>
+		<property name="institution" value="CBSE"></property>
+		<property name="location" value="Raj"></property>
+		<property name="marksObtained" value="80.8"></property>
+		<property name="maximumMarks" value="100"></property>
+		<property name="remarks" value="School Leaving Certificate"></property>
+
+	</bean>
+	<!-- defining skill bean -->
+	<bean name="skills" class="com.springmyresume.resume.skills.SkillsImpl">
+		<constructor-arg>
+			<value>Programming Language</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>Java/Spring/JSF/Play</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1/1/2005</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1/2/2013</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>7</value>
+		</constructor-arg>
+
+	</bean>
+	<bean name="skillsWeb" class="com.springmyresume.resume.skills.SkillsImpl">
+		<constructor-arg>
+			<value>Programming Language</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>PHP.Perl,Shell Script</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1/1/2005</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1/2/2012</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>7</value>
+		</constructor-arg>
+
+	</bean>
+	<bean name="skillsOthers" class="com.springmyresume.resume.skills.SkillsImpl">
+		<constructor-arg>
+			<value>Programming Language</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>Unix,Oracle,MySql</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1/1/2005</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1/2/2012</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>5</value>
+		</constructor-arg>
+
+	</bean>
+
+	<bean name="experienceAmdocs" class="com.springmyresume.resume.experience.ExperienceImpl">
+		<property name="company" value="SME-Amdocs"></property>
+		<property name="endDate" value="30/06/2011"></property>
+		<property name="startDate" value="23/06/2008"></property>
+		<property name="remarks" value="Amdocs hired me from college"></property>
+		<property name="projectList">
+			<list>
+				<ref bean="salesForceManagement"></ref>
+				
+			</list>
+
+		</property>
+
+	</bean>
+	
+	<bean name="experienceGOI" class="com.springmyresume.resume.experience.ExperienceImpl">
+		<property name="company" value="Expert-Government of India,CDAC"></property>
+		<property name="endDate" value="10/4/2012"></property>
+		<property name="startDate" value="27/9/2011"></property>
+		<property name="remarks" value="Expert at Hanoi"></property>
+	
+
+	</bean>
+	
+	<bean name="experienceCogni" class="com.springmyresume.resume.experience.ExperienceImpl">
+		<property name="company" value="Consultant-Cognilytics"></property>
+		<property name="endDate" value="26/11/2012"></property>
+		<property name="startDate" value="10/02/2013"></property>
+		<property name="remarks" value="Consultant-Cognilytics"></property>
+
+
+	</bean>
+	<bean name="experienceGifto" class="com.springmyresume.resume.experience.ExperienceImpl">
+		<property name="company" value="Consultant-Giftology"></property>
+		<property name="endDate" value="30/07/2013"></property>
+		<property name="startDate" value="10/04/2002"></property>
+		<property name="remarks" value="Consultant-Giftology"></property>
+		
+
+	</bean>
+
+	<bean name="experienceDojo" class="com.springmyresume.resume.experience.ExperienceImpl">
+		<property name="company" value="Consultant-Lifedojo"></property>
+		<property name="endDate" value="15/09/2013"></property>
+		<property name="startDate" value="30/06/2013"></property>
+		<property name="remarks" value="Consultant-Lifedojo"></property>
+		
+
+	</bean>
+	<bean name="salesForceManagement" class="com.springmyresume.resume.experience.ProjectImpl">
+		<property name="client">
+			<bean class="com.springmyresume.resume.experience.ClientImpl">
+				<property name="clientName" value="AT-T"></property>
+				<property name="clientLocation" value="USA"></property>
+			</bean>
+		</property>
+		<property name="projectDescription">
+			<bean class="com.springmyresume.resume.experience.ProjectDescription">
+				<property name="projectDescription" value="Design and Development of J2EE Application"></property>
+			</bean>
+		</property>
+
+		<property name="projectName" value="Sales Force Management"></property>
+		<property name="skillsUsed">
+			<list>
+				<ref bean="skills"></ref>
+
+			</list>
+
+		</property>
+
+	</bean>
+
+	<bean name="client" class="com.springmyresume.resume.experience.ClientImpl">
+		<property name="clientName" value="Vodafone"></property>
+		<property name="clientLocation" value="United Kingdom"></property>
+
+	</bean>
+
+</beans>

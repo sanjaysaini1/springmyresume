@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<p:tab id="experience" title="Experience">
+		<p:panel id="panel_exp" header="Experience">
+
+			<h:messages errorClass="error" />
+
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="company" value="Company: " />
+				<p:inputText id="company"
+					value="#{resumeBuilder.experience.company}">
+
+				</p:inputText>
+
+				<p:message for="company" display="icon" />
+
+
+
+				<h:outputLabel for="startDate" value="Start Date: " />
+				<p:calendar id="startDate" pattern="dd/MM/yyyy"
+					showButtonPanel="true" navigator="true"
+					value="#{resumeBuilder.experience.startDate}" mindate="1/1/60">
+				</p:calendar>
+
+				<p:message for="startDate" display="icon" />
+
+				<h:outputLabel for="endDate" value="End Date: " />
+				<p:calendar id="endDate" pattern="dd/MM/yyyy" showButtonPanel="true"
+					navigator="true" value="#{resumeBuilder.experience.endDate}"
+					required="false" mindate="1/1/60">
+				</p:calendar>
+
+				<p:message for="endDate" display="icon" />
+
+			</h:panelGrid>
+
+
+			<p:panel id="panel_exp_project" header="Projects">
+
+				<h:panelGrid columns="3">
+
+					<h:outputLabel for="projectName" value="Name: " />
+					<p:inputText id="projectName"
+						value="#{resumeBuilder.project.projectName}">
+
+					</p:inputText>
+
+					<p:message for="projectName" display="icon" />
+
+					<h:outputLabel for="projectDescription" value="Description: " />
+					<p:inputTextarea id="projectDescription" rows="2" cols="80"
+						counter="counter3" maxlength="100"
+						value="#{resumeBuilder.project.projectDescription.projectDescription}"
+						counterTemplate="{0} characters remaining." autoResize="false">
+
+					</p:inputTextarea>
+					<h:outputText id="counter3" />
+
+					<h:outputLabel for="clientName" value="Client: " />
+					<p:inputText id="clientName"
+						value="#{resumeBuilder.project.client.clientName}">
+
+					</p:inputText>
+
+					<p:message for="clientName" display="icon" />
+
+					<h:outputLabel for="clientLocation" value="Location: " />
+					<p:inputText id="clientLocation"
+						value="#{resumeBuilder.project.client.clientLocation}">
+
+					</p:inputText>
+
+					<p:message for="clientLocation" display="icon" />
+
+				</h:panelGrid>
+
+				<p:commandButton id="btn_addproject" value="Add"
+					update="panel_exp_project" action="#{resumeBuilder.addprojects()}">
+				</p:commandButton>
+
+				<p:dataTable id="projectstable" var="project"
+					value="#{resumeBuilder.projectList}">
+					<p:column headerText="Project Name">
+						<h:outputText value="#{project.projectName}" />
+					</p:column>
+
+					<p:column headerText="Description">
+						<h:outputText
+							value="#{project.projectDescription.projectDescription}" />
+					</p:column>
+
+					<p:column headerText="Client">
+						<h:outputText value="#{project.client.clientName}" />
+					</p:column>
+
+					<p:column headerText="Location">
+						<h:outputText value="#{project.client.clientLocation}" />
+					</p:column>
+
+
+				</p:dataTable>
+
+
+			</p:panel>
+
+			<p:commandButton id="btn_addexp" value="Add" update="panel_exp"
+				action="#{resumeBuilder.addexp()}">
+			</p:commandButton>
+
+			<p:dataTable id="exptable" var="exp"
+				value="#{resumeBuilder.experienceList}">
+				<p:column headerText="Company">
+					<h:outputText value="#{exp.company}" />
+				</p:column>
+
+				<p:column headerText="Start Date">
+					<h:outputText value="#{exp.startDate}" />
+				</p:column>
+
+				<p:column headerText="End Date">
+					<h:outputText value="#{exp.endDate}" />
+				</p:column>
+
+			</p:dataTable>
+
+
+
+		</p:panel>
+
+		<p:commandButton id="btn_clear3" value="Clear" update="panel_exp"
+			immediate="true" action="#{resumeBuilder.resetexp()}">
+		</p:commandButton>
+	</p:tab>
+</ui:composition>

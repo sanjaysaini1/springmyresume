@@ -1,0 +1,47 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="newtemplate.xhtml">
+
+	<ui:define name="content">
+		<br />
+		<h:form id="resume_form">
+
+			<p:wizard flowListener="#{resumeBuilder.onFlowProcess}">
+
+				<ui:insert name="personaldetails">
+					<ui:include src="personaldetails.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="skills">
+					<ui:include src="skills.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="experience">
+					<ui:include src="experience.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="education">
+					<ui:include src="education.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="publication">
+					<ui:include src="publication.xhtml" />
+				</ui:insert>
+
+				<ui:insert name="references">
+					<ui:include src="references.xhtml" />
+				</ui:insert>
+				
+				<ui:insert name="confirm">
+					<ui:include src="confirm.xhtml" />
+				</ui:insert>
+
+			</p:wizard>
+			
+		</h:form>
+
+	</ui:define>
+</ui:composition>

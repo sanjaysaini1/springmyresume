@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13800974743120" configfile="/SpringMyResume/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="r" id="pf13825213912604" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" outlinks="pf13825230128028 pf13825230128029" inlinks="pf13825230128029" path="/jsf/resume.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/result.xhtml" id="pf138252301280210" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13825230128028" path="/jsf/result.xhtml"/>
+  <links id="pf13825230128028" target="pf138252301280210" source="pf13825213912604" outcome="success"/>
+  <links id="pf13825230128029" target="pf13825213912604" source="pf13825213912604" outcome="failure"/>
+</pageflow:Pageflow>

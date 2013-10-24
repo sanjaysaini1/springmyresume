@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<p:tab id="edu" title="Education">
+		<p:panel id="panel_edu" header="Education">
+
+			<h:messages errorClass="error" />
+
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="qualification" value="Qualification: " />
+				<p:inputText id="qualification"
+					value="#{resumeBuilder.education.degree}">
+
+				</p:inputText>
+
+				<p:message for="qualification" display="icon" />
+
+
+				<h:outputLabel for="institution" value="Institution: " />
+				<p:inputText id="institution"
+					value="#{resumeBuilder.education.institution}" required="false">
+				</p:inputText>
+				<p:message for="institution" display="icon" />
+
+				<h:outputLabel for="location" value="Location: " />
+				<p:inputText id="location"
+					value="#{resumeBuilder.education.location}" required="false">
+				</p:inputText>
+
+				<p:message for="location" display="icon" />
+
+				<h:outputLabel for="marksObtained" value="Marks Obtained: " />
+				<p:inputText id="marksObtained"
+					value="#{resumeBuilder.education.marksObtained}" required="false">
+				</p:inputText>
+
+				<p:message for="marksObtained" display="icon" />
+
+				<h:outputLabel for="maximumMarks" value="Max Marks: " />
+				<p:inputText id="maximumMarks"
+					value="#{resumeBuilder.education.maximumMarks}" required="false">
+				</p:inputText>
+
+				<p:message for="maximumMarks" display="icon" />
+
+
+
+				<h:outputLabel for="remarks" value="Remarks: " />
+				<p:inputText id="remarks" value="#{resumeBuilder.education.remarks}"
+					required="false">
+				</p:inputText>
+
+				<p:message for="remarks" display="icon" />
+
+				<h:outputLabel for="yearofJoining" value="Date of Joining: " />
+				<p:calendar id="yearofJoining" pattern="dd/MM/yyyy"
+					showButtonPanel="true" navigator="true"
+					value="#{resumeBuilder.education.yearofJoining}" required="false"
+					mindate="1/1/60">
+				</p:calendar>
+				<p:message for="yearofJoining" display="icon" />
+
+				<h:outputLabel for="yearofPassing" value="Date of Passing: " />
+				<p:calendar id="yearofPassing" pattern="dd/MM/yyyy"
+					showButtonPanel="true" navigator="true"
+					value="#{resumeBuilder.education.yearofPassing}" required="false"
+					mindate="1/1/60">
+				</p:calendar>
+				<p:message for="yearofPassing" display="icon" />
+
+			</h:panelGrid>
+			<p:commandButton id="btn_addedu" value="Add" update="panel_edu"
+				action="#{resumeBuilder.addedu()}">
+			</p:commandButton>
+
+			<p:dataTable id="edutable" var="edu"
+				value="#{resumeBuilder.educationList}">
+				<p:column headerText="Qualification">
+					<h:outputText value="#{edu.degree}" />
+				</p:column>
+
+				<p:column headerText="Institution">
+					<h:outputText value="#{edu.institution}" />
+				</p:column>
+
+				<p:column headerText="Location">
+					<h:outputText value="#{edu.location}" />
+				</p:column>
+
+				<p:column headerText="Marks Obtained">
+					<h:outputText value="#{edu.marksObtained}" />
+				</p:column>
+
+				<p:column headerText="Max Marks">
+					<h:outputText value="#{edu.maximumMarks}" />
+				</p:column>
+
+				<p:column headerText="Date of Joining">
+					<h:outputText value="#{edu.yearofJoining}" />
+				</p:column>
+
+				<p:column headerText="Date of Passing">
+					<h:outputText value="#{edu.yearofPassing}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+
+		<p:commandButton id="btn_clear4" value="Clear" update="panel_edu"
+			immediate="true" action="#{resumeBuilder.resetedu()}">
+		</p:commandButton>
+	</p:tab>
+
+</ui:composition>

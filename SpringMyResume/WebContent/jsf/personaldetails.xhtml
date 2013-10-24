@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:tab id="personal" title="Personal">
+		<p:panel id="panel" header="Personal Details">
+
+			<h:messages errorClass="error" />
+
+
+
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="objective" value="Objective: " />
+				<p:inputTextarea id="objective" rows="2" cols="80"
+					counter="counter0" maxlength="100"
+					value="#{resumeBuilder.objective.objective}"
+					counterTemplate="{0} characters remaining." autoResize="false">
+
+				</p:inputTextarea>
+
+
+				<h:outputText id="counter0" />
+
+				<h:outputLabel for="name" value="Name: *" />
+				<p:inputText id="name" value="#{resumeBuilder.personalDetails.name}"
+					required="true">
+					<f:validateLength minimum="8" />
+				</p:inputText>
+				<p:message for="name" display="icon" />
+
+
+				<h:outputLabel for="dob" value="Date of Birth: *" />
+				<p:calendar id="dob" pattern="dd/MM/yyyy" showButtonPanel="true"
+					navigator="true"
+					value="#{resumeBuilder.personalDetails.dateOfBirth}"
+					required="true" mindate="1/1/40">
+				</p:calendar>
+
+				<p:message for="dob" display="icon" />
+
+
+				<h:outputLabel for="address" value="Address: *" />
+				<p:inputTextarea id="address" rows="5" cols="40" counter="counter2"
+					maxlength="100" required="true"
+					value="#{resumeBuilder.personalDetails.address}"
+					counterTemplate="{0} characters remaining." autoResize="false">
+					<f:validateLength minimum="2" />
+				</p:inputTextarea>
+
+				<h:outputText id="counter2" />
+
+				<h:outputLabel for="contactnumber" value="Contact Number: *" />
+				<p:inputMask id="contactnumber"
+					value="#{resumeBuilder.personalDetails.contactNumber}"
+					required="true" mask="9999999999">
+					<f:validateLength maximum="13" minimum="10" />
+				</p:inputMask>
+				<p:message for="contactnumber" display="icon" />
+
+				<h:outputLabel for="languagesKnown" value="Languages Known: " />
+				<p:inputText id="languagesKnown"
+					value="#{resumeBuilder.personalDetails.languagesKnown}"
+					required="false">
+				</p:inputText>
+				<p:message for="languagesKnown" display="icon" />
+
+				<h:outputLabel for="interests" value="Interests: " />
+				<p:inputText id="interests"
+					value="#{resumeBuilder.personalDetails.interests}" required="false">
+				</p:inputText>
+				<p:message for="interests" display="icon" />
+
+				<h:outputLabel for="emailId" value="Email: *" />
+				<p:inputText id="emailId"
+					value="#{resumeBuilder.personalDetails.emailId}" required="true">
+				</p:inputText>
+				<p:message for="interests" display="icon" />
+			</h:panelGrid>
+
+
+		</p:panel>
+		<p:commandButton id="btn_clear1" value="Clear" update="panel"
+			action="#{resumeBuilder.reset()}">
+		</p:commandButton>
+	</p:tab>
+
+
+
+</ui:composition>

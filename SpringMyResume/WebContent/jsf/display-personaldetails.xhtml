@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:tab id="display-personal" title="Personal">
+	
+		<h:panelGrid columns="2">
+
+				<h:outputText  value="Objective: " />
+				<h:outputText  rows="2" cols="80"
+					
+					value="#{resumeBuilder.objective.objective}"
+				/>
+
+				<h:outputText  value="Name: " />
+				<h:outputText  value="#{resumeBuilder.personalDetails.name}"
+					>
+					
+				</h:outputText>
+
+
+				<h:outputText  value="Date of Birth: " />
+				<h:outputText  pattern="dd/MM/yyyy" showButtonPanel="true"
+					
+					value="#{resumeBuilder.personalDetails.dateOfBirth}"
+					>
+				</h:outputText>
+
+
+
+				<h:outputText  value="Address: " />
+				<h:outputText  rows="5" cols="40"
+					
+					value="#{resumeBuilder.personalDetails.address}"
+				>
+					
+				</h:outputText>
+
+
+				<h:outputText  value="Contact Number: " />
+				<h:outputText 
+					value="#{resumeBuilder.personalDetails.contactNumber}"
+					>
+					
+				</h:outputText>
+
+				<h:outputText  value="Languages Known: " />
+				<h:outputText 
+					value="#{resumeBuilder.personalDetails.languagesKnown}"
+					>
+				</h:outputText>
+
+				<h:outputText  value="Interests: " />
+				<h:outputText 
+					value="#{resumeBuilder.personalDetails.interests}" >
+				</h:outputText>
+
+				<h:outputText  value="Email: *" />
+				<h:outputText 
+					value="#{resumeBuilder.personalDetails.emailId}" >
+				</h:outputText>
+
+			</h:panelGrid>
+	
+	</p:tab>
+
+</ui:composition>

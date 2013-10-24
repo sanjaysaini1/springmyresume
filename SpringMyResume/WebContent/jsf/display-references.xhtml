@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:tab id="display-ref" title="References">
+	
+
+			
+			<p:dataTable id="display-reftable" var="ref"
+				value="#{resumeBuilder.referencesList}">
+				<p:column headerText="Name">
+					<h:outputText value="#{ref.referenceName}" />
+				</p:column>
+
+				<p:column headerText="Address">
+					<h:outputText value="#{ref.referenceAddress}" />
+				</p:column>
+
+				<p:column headerText="Phone Number">
+					<h:outputText value="#{ref.referenceContactNumber}" />
+				</p:column>
+
+
+
+			</p:dataTable>
+
+
+	</p:tab>
+
+
+</ui:composition>
