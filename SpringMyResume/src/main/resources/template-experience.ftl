@@ -83,6 +83,7 @@
 								</td>
 							</tr>
 							<tr>
+							<#if project.skillsUsed?has_content>
 								<td>
 									Skills Used:
 								
@@ -91,6 +92,7 @@
 										<a href="skills.html">${skill.skillname}</a>
 									</#list>
 								</td>
+							</#if>
 							</tr>
 					</table>
 					</td>

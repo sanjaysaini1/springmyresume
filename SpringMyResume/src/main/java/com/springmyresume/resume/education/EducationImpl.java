@@ -1,7 +1,6 @@
 package com.springmyresume.resume.education;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;

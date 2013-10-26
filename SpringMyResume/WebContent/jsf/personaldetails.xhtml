@@ -41,6 +41,7 @@
 					navigator="true"
 					value="#{resumeBuilder.personalDetails.dateOfBirth}"
 					required="true" mindate="1/1/40">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+5" />
 				</p:calendar>
 
 				<p:message for="dob" display="icon" />

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 
 import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,9 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 	private List<References> referencesList;
 
 	private List<Publications> publicationsList;
+	
+	private String resumeSitePath;
+	
 
 	public NewResumeBuilder() {
 		super();
@@ -301,6 +305,15 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 				SiteBuilder siteBuilder=new SimpleSiteBuilder(newresume);
 				  SiteMaker siteMaker=new SiteMaker(siteBuilder);
 				  siteMaker.makeSite();
+				  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();  
+				     
+				    //String serverRealPath = servletContext.getRealPath("/");
+				    String serverContextPath = servletContext.getContextPath();
+				    
+				 this.resumeSitePath=serverContextPath+"/ZipSites/"+siteBuilder.getFileName();
+				     
+				    
+				  System.out.println("Location of Zip file: ");
 			}catch(Exception e)
 			{
 				e.printStackTrace();
@@ -408,5 +421,13 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 		 
 		 this.referencesList=new ArrayList<References>();
 
+	}
+
+	public String getResumeSitePath() {
+		return resumeSitePath;
+	}
+
+	public void setResumeSitePath(String resumeSitePath) {
+		this.resumeSitePath = resumeSitePath;
 	}
 }

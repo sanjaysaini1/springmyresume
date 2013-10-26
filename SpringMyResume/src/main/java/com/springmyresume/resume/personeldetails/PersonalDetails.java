@@ -1,7 +1,5 @@
 package com.springmyresume.resume.personeldetails;
 
-import java.util.Date;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

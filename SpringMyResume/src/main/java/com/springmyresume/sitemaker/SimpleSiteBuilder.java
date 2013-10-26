@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
+
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.io.FileUtils;
@@ -36,6 +39,24 @@ public class SimpleSiteBuilder implements SiteBuilder {
 	String location;
 
 	String fileName;
+	
+	
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	public SimpleSiteBuilder(Resume resume) {
 		super();
@@ -284,7 +305,12 @@ public class SimpleSiteBuilder implements SiteBuilder {
 
 	public void createZipSite() {
 
-		String destZip = "./ZipSites/" + this.fileName;
+		 ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();  
+	     
+		    String serverRealPath = servletContext.getRealPath("/");
+		    String serverContextPath = servletContext.getContextPath();
+		    
+		String destZip = serverRealPath+"/ZipSites/" + this.fileName;
 		try {
 			createZip(this.location, destZip);
 		} catch (IOException e) {

@@ -46,13 +46,21 @@
 			<div id="box1">
 			<#list publications as pub>
 				<table class="CSSTableGenerator">
-					<th>${pub.paperName}</th>
-					<th>${pub.conference}</th>
-					<th>Published in:${pub.journal}</th>
-					<th>${pub.year}</th>
+				<tr>
+					<th> Paper </th>
+					<th> Conference </th>
+					<th> Journal  </th>
+					<th>  Year  </th>
+					<th>  Details  </th>
+				</tr>
+				<tr>
+					<td>${pub.paperName !}</td>
+					<td>${pub.conference !}</td>
+					<td>${pub.journal !}</td>
+					<td>${pub.year !}</td>
 	   				
-					<tr>
-						<td colspan=4>
+					
+						<td >
 							${pub.paperDetails!}
 						</td>
 						

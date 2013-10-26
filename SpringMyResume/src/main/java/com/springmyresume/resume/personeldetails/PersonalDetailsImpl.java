@@ -1,11 +1,9 @@
 package com.springmyresume.resume.personeldetails;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import com.springmyresume.resume.EmbeddedResumeObject;
@@ -21,7 +19,6 @@ public class PersonalDetailsImpl implements EmbeddedResumeObject,Serializable,Pe
 	private static final long serialVersionUID = 9018240338842835132L;
 	
 	private String name;
-	@DateTimeFormat(pattern="dd/MM/YY")  
 	private String dateOfBirth;
 	private String address;
 	private String emailId;

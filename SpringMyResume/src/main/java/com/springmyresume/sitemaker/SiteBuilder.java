@@ -14,4 +14,5 @@ public interface SiteBuilder {
 	 public void buildCss();
 	 public void buildJs();
 	public Site getSite();
+	public String getFileName();
 }

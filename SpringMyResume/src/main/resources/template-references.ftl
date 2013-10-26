@@ -58,7 +58,7 @@
 							${ref.referenceAddress!}
 						</td>
 						<td>
-							${edu.referenceContactNumber!}
+							${ref.referenceContactNumber!}
 						</td>
 						
 					</tr>
