@@ -38,10 +38,10 @@
 
 				<h:outputLabel for="dob" value="Date of Birth: *" />
 				<p:calendar id="dob" pattern="dd/MM/yyyy" showButtonPanel="true"
-					navigator="true"
+					navigator="true"  
 					value="#{resumeBuilder.personalDetails.dateOfBirth}"
 					required="true" mindate="1/1/40">
-					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+5" />
+					<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"  />
 				</p:calendar>
 
 				<p:message for="dob" display="icon" />
@@ -81,8 +81,10 @@
 				<h:outputLabel for="emailId" value="Email: *" />
 				<p:inputText id="emailId"
 					value="#{resumeBuilder.personalDetails.emailId}" required="true">
+					 <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 				</p:inputText>
-				<p:message for="interests" display="icon" />
+				<p:message for="emailId" display="icon" />
 			</h:panelGrid>
 
 

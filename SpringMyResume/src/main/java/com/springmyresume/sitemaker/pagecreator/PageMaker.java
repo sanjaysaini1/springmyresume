@@ -48,7 +48,7 @@ public abstract class PageMaker {
 			
 			
 			String filename= "."+"/"+location+"/"+pagename;
-			System.out.println("FILE"+filename);
+			//System.out.println("FILE"+filename);
 			File html=new File(filename);
 			if(html.getParentFile()!=null)
 			{
@@ -78,11 +78,11 @@ public abstract class PageMaker {
 		menu.add(new MenuItem("skills.html","Skills"));
 		menu.add(new MenuItem("experience.html","Experience"));
 		menu.add(new MenuItem("education.html","Education"));
-		if(!(resume.getPublications()==null))
+		if(resume.getPublications()!=null)
 		{
 			menu.add(new MenuItem("publications.html","Publications"));
 		}
-		if(!(resume.getReferences()==null))
+		if(resume.getReferences()!=null)
 		{
 			menu.add(new MenuItem("references.html","References"));
 		}

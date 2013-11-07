@@ -67,18 +67,18 @@
 					<table id="projecttable">
 						
 							<th>							
-									${project_index+1}.${project.projectName}
+									${project_index+1}.${project.projectName !}
 							</th>
 							<tr>
 								<td>
-									Client: ${project.client.clientName},${project.client.clientLocation}
+									Client: ${project.client.clientName !},${project.client.clientLocation !}
 								</td>
 							</tr>
 							<tr>
 								<td>
 									Description:<br/>
 									<p>
-									${project.projectDescription.projectDescription}
+									${project.projectDescription.projectDescription !}
 									</p>
 								</td>
 							</tr>
@@ -89,7 +89,7 @@
 								
 									<#assign skillused = project.skillsUsed>
 									<#list skillused as skill>
-										<a href="skills.html">${skill.skillname}</a>
+										<a href="skills.html">${skill.skillname !}</a>
 									</#list>
 								</td>
 							</#if>

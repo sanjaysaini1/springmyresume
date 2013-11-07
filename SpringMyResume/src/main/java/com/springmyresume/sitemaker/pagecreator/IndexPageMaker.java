@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.springmyresume.resume.Resume;
+import com.springmyresume.resume.utility.Utility;
 
 public class IndexPageMaker extends PageMaker {
 
@@ -18,11 +19,12 @@ public class IndexPageMaker extends PageMaker {
 		menu.add(new MenuItem("html/skills.html","Skills"));
 		menu.add(new MenuItem("html/experience.html","Experience"));
 		menu.add(new MenuItem("html/education.html","Education"));
-		if(!(resume.getPublications()==null))
+		Utility.p("YABABA"+resume.toString());
+		if(resume.getPublications()!=null)
 		{
 			menu.add(new MenuItem("html/publications.html","Publications"));
 		}
-		if(!(resume.getReferences()==null))
+		if(resume.getReferences()!=null)
 		{
 			menu.add(new MenuItem("html/references.html","References"));
 		}

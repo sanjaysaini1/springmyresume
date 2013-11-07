@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>SpringMyResume</display-name>
     <welcome-file-list>
-    <welcome-file>jsf/resume.xhtml</welcome-file>
+    <welcome-file>jsf/login.xhtml</welcome-file>
   </welcome-file-list>
   
  <listener>
@@ -45,4 +45,14 @@
   </servlet-mapping>
  
     
+     <!-- keys gotten from recaptcha -->
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LdX2OkSAAAAAJimktAvD1toZKbEPppvvw7F47nT</param-value>
+    </context-param>
+   
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6LdX2OkSAAAAAAtekv_NB3i7xjWi1YiJQfEXdYuK</param-value>
+    </context-param>
 </web-app>

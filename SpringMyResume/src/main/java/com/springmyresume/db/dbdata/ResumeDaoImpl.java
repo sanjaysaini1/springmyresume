@@ -39,7 +39,7 @@ public class ResumeDaoImpl implements ResumeDao {
 	public Resume getResume(Object object) {
 	//	System.out.println("++++++++++++++++++\nRetrieving Resume\n++++++++++++++++++");
 		String key=(String)object;
-		System.out.println("++++++++++++++++++\n"+key+"\n++++++++++++++++++");
+	//	System.out.println("++++++++++++++++++\n"+key+"\n++++++++++++++++++");
 		 Query query = new Query(Criteria.where("id").is(key));
 		 Resume resume=(Resume) mongoOperations.findOne(query,Resume.class);
 		return resume;
@@ -51,7 +51,7 @@ public class ResumeDaoImpl implements ResumeDao {
 	  mongoOperations.save(resume);
 		}catch(Exception e)
 		{
-			System.out.println("Failure: "+e.toString());
+			//System.out.println("Failure: "+e.toString());
 			return false;
 		}
 		return true;

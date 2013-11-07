@@ -19,7 +19,7 @@ public class PublicationsPageMaker extends PageMaker {
 		{
 			root.put("objective", resume.getObjective().getObjective());
 		}
-		System.out.println(root.get("skills"));
+		//System.out.println(root.get("skills"));
 		return root;
 	}
 

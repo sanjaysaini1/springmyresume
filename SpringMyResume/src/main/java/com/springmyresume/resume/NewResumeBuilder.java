@@ -1,14 +1,17 @@
 package com.springmyresume.resume;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
 import org.primefaces.event.FlowEvent;
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -31,6 +34,7 @@ import com.springmyresume.resume.references.References;
 import com.springmyresume.resume.references.ReferencesImpl;
 import com.springmyresume.resume.skills.Skills;
 import com.springmyresume.resume.skills.SkillsImpl;
+import com.springmyresume.resume.utility.Utility;
 import com.springmyresume.sitemaker.SimpleSiteBuilder;
 import com.springmyresume.sitemaker.SiteBuilder;
 import com.springmyresume.sitemaker.SiteMaker;
@@ -92,7 +96,7 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 
 	public NewResumeBuilder() {
 		super();
-		System.out.println("In resume builder");
+		//System.out.println("In resume builder");
 		skillsList=new ArrayList<Skills>();
 		experienceList=new ArrayList<Experience>();
 		projectList=new ArrayList<Project>();
@@ -231,6 +235,17 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 		this.mindmapBean = mindmapBean;
 	}
 
+
+	public String getResumeSitePath() {
+		return resumeSitePath;
+	}
+
+	public void setResumeSitePath(String resumeSitePath) {
+		this.resumeSitePath = resumeSitePath;
+	}
+	
+
+	
 	public void buildRid() {
 
 	}
@@ -270,39 +285,33 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 
 	}
 
-	public String putResumeToDB() {
-		System.out.println("Clicked :");
 
-		ApplicationContext ctx = new GenericXmlApplicationContext(
-				"mongo-config.xml");
-		ResumeDao resumeDao = (ResumeDao) ctx.getBean("resumeDao");
-		System.out.println("Resune :" + this);
-		// resumeDao.setObjective(this.getObjective());
-		Resume newresume = new Resume();
-		if (this.objective.getObjective() != "") {
-			newresume.setObjective(this.objective);
-		}
-		newresume.setPersonalDetails(this.personalDetails);
-		newresume.setId(this.personalDetails.getEmailId()
-				+ this.personalDetails.getContactNumber());
-		newresume.setPersonalDetails(this.getPersonalDetails());
-		newresume.setSkills(this.skillsList);
-		newresume.setExperience(this.experienceList);
-		newresume.setEducation(this.educationList);
-		newresume.setPublications(this.publicationsList);
-		newresume.setReferences(this.referencesList);
-		System.out.println("New Resune :" + newresume);
-		if(resumeDao.setResume(newresume))
+	public void checkLogin()
+	{
+		Utility.p("In checklogin");
+		
+	}
+	
+	
+	public String login()
+	{
+		Utility.p("In login");
+		String id=this.getPersonalDetails().getEmailId()+this.getPersonalDetails().getContactNumber();
+		ApplicationContext ctx = new GenericXmlApplicationContext("mongo-config.xml");
+		ResumeDao resumeDao=(ResumeDao)ctx.getBean("resumeDao");
+		Resume localresume=resumeDao.getResume(id);
+		//Utility.p(localresume.toString());
+		if(localresume !=null)
 		{
 			try{
-				this.mindmapBean=new MindmapBean(newresume.getId());
+				this.mindmapBean=new MindmapBean(localresume.getId());
 			}catch(Exception e)
 			{
 				e.printStackTrace();
-				return "failure";
+				return "site-unavailable";
 			}
 			try{
-				SiteBuilder siteBuilder=new SimpleSiteBuilder(newresume);
+				SiteBuilder siteBuilder=new SimpleSiteBuilder(localresume);
 				  SiteMaker siteMaker=new SiteMaker(siteBuilder);
 				  siteMaker.makeSite();
 				  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();  
@@ -313,19 +322,24 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 				 this.resumeSitePath=serverContextPath+"/ZipSites/"+siteBuilder.getFileName();
 				     
 				    
-				  System.out.println("Location of Zip file: ");
+				 // System.out.println("Location of Zip file: ");
 			}catch(Exception e)
 			{
 				e.printStackTrace();
-				return "failure";
+				//call edit function here. Not written yet.
+				this.setPersonalDetails(localresume.getPersonalDetails());
+				this.setEducationList(localresume.getEducation());
+				this.setExperienceList(localresume.getExperience());
+				
+				return "site-exception";
 			}
-			return "success";
+			
+			return "site-exists";
 		}else
 		{
-			return "failure";
+			return "site-unavailable";
 		}
 	}
-
 	public String onFlowProcess(FlowEvent event) {
 
 		return event.getNewStep();
@@ -347,7 +361,7 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 
 	public void resetskills()
 	{
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		reset();
 		 this.skillsList=new ArrayList<Skills>();
 
 	}
@@ -355,21 +369,21 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 	public void addprojects(){
 		this.projectList.add(this.project);
 		this.project=new ProjectImpl();
-		//FacesContext.getCurrentInstance().getExternalContext().getInitParameter("project");
+		
 		
 	}
 	
 	public void addexp(){
 		this.experience.setProjectList(this.projectList);
 		this.experienceList.add(this.experience);
-		System.out.println(experience);
+		//System.out.println(experience);
 		 this.projectList=new ArrayList<Project>();
 		this.experience=new ExperienceImpl();
 	}
 	
 	public void resetexp()
 	{
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		reset();
 		 this.projectList=new ArrayList<Project>();
 		 this.experienceList=new ArrayList<Experience>();
 
@@ -378,14 +392,14 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 	public void addedu(){
 
 		this.educationList.add(this.education);
-		System.out.println(this.education);
+		//System.out.println(this.education);
 		 
 		this.education=new EducationImpl();
 	}
 	
 	public void resetedu()
 	{
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		reset();
 		 
 		 this.educationList=new ArrayList<Education>();
 
@@ -395,14 +409,14 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 	public void addpub(){
 
 		this.publicationsList.add(this.publications);
-		System.out.println(publications);
+		//System.out.println(publications);
 		 
 		this.publications=new PublicationsImpl();
 	}
 	
 	public void resetpub()
 	{
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		reset();
 		 
 		 this.publicationsList=new ArrayList<Publications>();
 
@@ -417,17 +431,67 @@ public class NewResumeBuilder implements ResumeBuilder, Serializable {
 	
 	public void resetref()
 	{
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		reset();
 		 
 		 this.referencesList=new ArrayList<References>();
 
 	}
 
-	public String getResumeSitePath() {
-		return resumeSitePath;
-	}
+	public String putResumeToDB() {
+		//System.out.println("Clicked :");
 
-	public void setResumeSitePath(String resumeSitePath) {
-		this.resumeSitePath = resumeSitePath;
+		ApplicationContext ctx = new GenericXmlApplicationContext(
+				"mongo-config.xml");
+		ResumeDao resumeDao = (ResumeDao) ctx.getBean("resumeDao");
+		//System.out.println("Resune :" + this);
+		// resumeDao.setObjective(this.getObjective());
+		Resume newresume = new Resume();
+		if (this.objective.getObjective() != "") {
+			newresume.setObjective(this.objective);
+		}
+		newresume.setPersonalDetails(this.personalDetails);
+		newresume.setId(this.personalDetails.getEmailId()
+				+ this.personalDetails.getContactNumber());
+		newresume.setPersonalDetails(this.getPersonalDetails());
+		newresume.setSkills(this.skillsList);
+		newresume.setExperience(this.experienceList);
+		newresume.setEducation(this.educationList);
+		newresume.setPublications(this.publicationsList);
+		newresume.setReferences(this.referencesList);
+		//System.out.println("New Resune :" + newresume);
+		if(resumeDao.setResume(newresume))
+		{
+			try{
+				this.mindmapBean=new MindmapBean(newresume.getId());
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+				return "failure";
+			}
+			try{
+				SiteBuilder siteBuilder=new SimpleSiteBuilder(newresume);
+				  SiteMaker siteMaker=new SiteMaker(siteBuilder);
+				  siteMaker.makeSite();
+				  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();  
+				     
+				    //String serverRealPath = servletContext.getRealPath("/");
+				    String serverContextPath = servletContext.getContextPath();
+				    
+				 this.resumeSitePath=serverContextPath+"/ZipSites/"+siteBuilder.getFileName();
+				     
+				    
+				 // System.out.println("Location of Zip file: ");
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+				return "failure";
+			}
+			return "success";
+		}else
+		{
+			return "failure";
+		}
 	}
+	
+	 
 }

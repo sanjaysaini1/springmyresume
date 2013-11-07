@@ -71,7 +71,7 @@ public class SimpleSiteBuilder implements SiteBuilder {
 		this.fileName = name;
 		this.site.setLocation(this.fileName);
 		this.location=this.fileName;
-		System.out.println(location);
+		//System.out.println(location);
 	}
 
 	public void buildIndexPage() {
@@ -220,7 +220,7 @@ public class SimpleSiteBuilder implements SiteBuilder {
 	public void buildCss() {
 		try{
 		Resource resource =new ClassPathResource("css");
-		System.out.println("RESOURCE"+resource.getURL().toString());
+		//System.out.println("RESOURCE"+resource.getURL().toString());
 		File cssSrcDir = resource.getFile();
 		File cssDstDir = new File(location + "/" + "css");
 		//FileUtils fileutil = new FileUtils();

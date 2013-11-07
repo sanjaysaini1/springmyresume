@@ -1,6 +1,9 @@
 package com.springmyresume.resume.skills;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
@@ -51,7 +54,7 @@ public class SkillsImpl implements EmbeddedResumeObject,Skills,Serializable{
 	
 	public SkillsImpl(){
 		super();
-		System.out.println("Skills Impl");
+		//System.out.println("Skills Impl");
 	}
 	
 	public String getSkilltype() {
@@ -70,13 +73,34 @@ public class SkillsImpl implements EmbeddedResumeObject,Skills,Serializable{
 		return usedSince;
 	}
 	public void setUsedSince(String usedSince) {
-		this.usedSince = usedSince;
+		
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(usedSince);
+			this.usedSince= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			//Utility.p("Date conversion failed");
+			this.usedSince = usedSince;
+		}
+		
+		//this.usedSince = usedSince;
 	}
 	public String getLastUsed() {
 		return lastUsed;
 	}
 	public void setLastUsed(String lastUsed) {
-		this.lastUsed = lastUsed;
+		
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(lastUsed);
+			this.lastUsed= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			//Utility.p("Date conversion failed");
+			this.lastUsed = lastUsed;
+		}
+		
+		
+	//	this.lastUsed = lastUsed;
 	}
 	public int getRank() {
 		return rank;

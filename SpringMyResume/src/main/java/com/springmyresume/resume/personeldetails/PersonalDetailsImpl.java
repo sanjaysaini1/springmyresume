@@ -1,12 +1,17 @@
 package com.springmyresume.resume.personeldetails;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.stereotype.Component;
 
 import com.springmyresume.resume.EmbeddedResumeObject;
+import com.springmyresume.resume.utility.Utility;
 
 
 @Component
@@ -48,7 +53,16 @@ public class PersonalDetailsImpl implements EmbeddedResumeObject,Serializable,Pe
 	}
 	
 	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(dateOfBirth);
+			this.dateOfBirth= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			Utility.p("Date conversion failed");
+			this.dateOfBirth = dateOfBirth;
+		}
+		Utility.p(this.dateOfBirth);
+		
 	}
 	
 	public String getAddress() {

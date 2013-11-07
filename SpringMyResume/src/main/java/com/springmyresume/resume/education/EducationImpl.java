@@ -1,11 +1,15 @@
 package com.springmyresume.resume.education;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
 import com.springmyresume.resume.EmbeddedResumeObject;
+import com.springmyresume.resume.utility.Utility;
 
 @Document
 @Component("education")
@@ -57,7 +61,16 @@ public class EducationImpl implements EmbeddedResumeObject,Education,Serializabl
 	}
 
 	public void setYearofJoining(String yearofJoining) {
-		this.yearofJoining = yearofJoining;
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(yearofJoining);
+			this.yearofJoining= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			//Utility.p("Date conversion failed");
+			this.yearofJoining = yearofJoining;
+		}
+		//Utility.p(this.yearofJoining);
+		//this.yearofJoining = yearofJoining;
 	}
 
 
@@ -112,7 +125,16 @@ public class EducationImpl implements EmbeddedResumeObject,Education,Serializabl
 	}
 
 	public void setYearofPassing(String yearofPassing) {
-		this.yearofPassing = yearofPassing;
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(yearofPassing);
+			this.yearofPassing= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			//Utility.p("Date conversion failed");
+			this.yearofPassing = yearofPassing;
+		}
+		
+		//this.yearofPassing = yearofPassing;
 	}
 	
 	

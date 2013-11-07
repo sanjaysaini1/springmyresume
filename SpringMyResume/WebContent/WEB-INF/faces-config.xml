@@ -23,4 +23,21 @@
     </navigation-case>
     
     </navigation-rule>
+    
+    <navigation-rule>
+    <from-view-id>/jsf/login.xhtml</from-view-id>
+    <navigation-case>
+    <from-outcome>site-exists</from-outcome>
+    <to-view-id>/jsf/result.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+    <from-outcome>site-exception</from-outcome>
+    <to-view-id>/jsf/resume.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+    <from-outcome>site-unavailable</from-outcome>
+    <to-view-id>/jsf/resume.xhtml</to-view-id>
+    </navigation-case>
+    
+    </navigation-rule>
 </faces-config>

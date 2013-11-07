@@ -31,7 +31,7 @@
 		<property name="dateOfBirth" value="22/08/1985"></property>
 		<property name="address" value="D16, SF, Uppal South End, Sec 49, Gurgaon"></property>
 		<property name="emailId" value="sanjaysaini1@gmail.com"></property>
-		<property name="contactNumber" value="+918287390842"></property>
+		<property name="contactNumber" value="8287390842"></property>
 		<property name="languagesKnown" value="English,Hindi"></property>
 		<property name="interests" value="Foreign Policy,Philosophy"></property>
 

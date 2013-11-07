@@ -1,6 +1,9 @@
 package com.springmyresume.resume.experience;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -62,13 +65,30 @@ public class ExperienceImpl implements EmbeddedResumeObject,Experience,Serializa
 		return startDate;
 	}
 	public void setStartDate(String  startDate) {
-		this.startDate = startDate;
+		
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(startDate);
+			this.startDate= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			//Utility.p("Date conversion failed");
+			this.startDate = startDate;
+		}
+		//this.startDate = startDate;
 	}
 	public String getEndDate() {
 		return endDate;
 	}
 	public void setEndDate(String  endDate) {
-		this.endDate = endDate;
+		try {
+			Date d= new SimpleDateFormat( "EEE MMM dd HH:mm:ss Z yyyy").parse(endDate);
+			this.endDate= new SimpleDateFormat("dd/MM/YYYY").format(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			//Utility.p("Date conversion failed");
+			this.endDate = endDate;
+		}
+		//this.endDate = endDate;
 	}
 	public List<Project> getProjectList() {
 		return projectList;

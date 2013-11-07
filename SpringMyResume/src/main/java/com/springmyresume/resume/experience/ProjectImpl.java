@@ -24,7 +24,7 @@ public class ProjectImpl implements EmbeddedResumeObject,Project,Serializable{
 	private ProjectDescription projectDescription;
 	@Autowired
 	private Client client;
-	@Autowired
+	
 	private List<Skills> skillsUsed;
 
 	/*@Id

@@ -39,7 +39,7 @@ public class MindmapBean implements Serializable {
     public MindmapBean() {
     	
     	
-   System.out.println("In mind map bean");
+   //System.out.println("In mind map bean");
        
    getResumefromDB();
    
@@ -73,14 +73,14 @@ public class MindmapBean implements Serializable {
         ApplicationContext ctx = new GenericXmlApplicationContext("mongo-config.xml");
 		ResumeDao resumeDao=(ResumeDao)ctx.getBean("resumeDao");
 		 newresume=resumeDao.getResume(id);
-		 System.out.println("RESSSUME: "+newresume);
+		// System.out.println("RESSSUME: "+newresume);
 		  personalDetails=newresume.getPersonalDetails();
 		  return newresume;
     }
     
     public MindmapBean(String id) {
     	
-    	 System.out.println("ID:"+id);
+    	// System.out.println("ID:"+id);
     		getResumefromDB( id);
     	    	
     	    root=new DefaultMindmapNode(newresume.getPersonalDetails().getName(), "Resume", "6e9ebf", true);
