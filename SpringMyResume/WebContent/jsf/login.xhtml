@@ -1,0 +1,46 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="newtemplate.xhtml">
+
+	<ui:define name="content">
+		<br />
+		<h:form id="login_form">
+
+
+               <p:messages />  
+			<h:panelGrid columns="3">
+
+
+
+				<h:outputLabel for="emailId" value="Email: *" />
+				<p:inputText id="emailId"
+					value="#{resumeBuilder.personalDetails.emailId}" required="true">
+					 <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+				<p:message for="emailId" display="icon" />
+
+
+               <h:outputLabel for="contactnumber" value="Contact Number: *" />
+				<p:inputMask id="contactnumber"
+					value="#{resumeBuilder.personalDetails.contactNumber}"
+					required="true" mask="9999999999">
+					<f:validateLength maximum="13" minimum="10" />
+				</p:inputMask>
+				<p:message for="contactnumber" display="icon" />
+				
+
+  
+               <p:captcha label="Captcha" theme="white"/>  
+  
+                  <p:commandButton value="Login" ajax="false"  
+                actionListener="#{resumeBuilder.checkLogin}" action="#{resumeBuilder.login}" />  
+			
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
